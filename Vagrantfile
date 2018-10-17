@@ -91,18 +91,19 @@ Vagrant.configure("2") do |config|
 		sudo rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
 		
 		# declare the v6 repo
-		echo "[elastic-6.x]" >> /etc/yum.repo.d/elastic.repo
-		echo "name=Elastic repository for 6.x packages" > /etc/yum.repo.d/elastic.repo
-		echo "baseurl=https://artifacts.elastic.co/packages/6.x/yum" > /etc/yum.repo.d/elastic.repo
-		echo "gpgcheck=1" > /etc/yum.repo.d/elastic.repo
-		echo "gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch" > /etc/yum.repo.d/elastic.repo
-		echo "enabled=1" > /etc/yum.repo.d/elastic.repo
-		echo "autorefresh=1" > /etc/yum.repo.d/elastic.repo
-		echo "type=rpm-md" > /etc/yum.repo.d/elastic.repo
+		sudo bash -c 'echo "[elastic-6.x]" > /etc/yum.repos.d/elastic.repo'
+		sudo bash -c 'echo "name=Elastic repository for 6.x packages" >> /etc/yum.repos.d/elastic.repo'
+		sudo bash -c 'echo "baseurl=https://artifacts.elastic.co/packages/6.x/yum" >> /etc/yum.repos.d/elastic.repo'
+		sudo bash -c 'echo "gpgcheck=1" >> /etc/yum.repos.d/elastic.repo'
+		sudo bash -c 'echo "gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch" >> /etc/yum.repos.d/elastic.repo'
+		sudo bash -c 'echo "enabled=1" >> /etc/yum.repos.d/elastic.repo'
+		sudo bash -c 'echo "autorefresh=1" >> /etc/yum.repos.d/elastic.repo'
+		sudo bash -c 'echo "type=rpm-md" >> /etc/yum.repos.d/elastic.repo'
 
 		sudo yum -y install elasticsearch logstash kibana filebeat
 		
-		echo "Start the Elasticsearch service and set it to start automatically on boot"
+		echo "Start
+		the Elasticsearch service and set it to start automatically on boot"
 		sudo systemctl daemon-reload
 		sudo systemctl enable elasticsearch
 		sudo systemctl start elasticsearch
